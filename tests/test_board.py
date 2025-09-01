@@ -16,9 +16,9 @@ class TestTablero(unittest.TestCase):
         self.board.establecer_posicion(5, -2)
         self.assertEqual(self.board.obtener_posicion(5), -2)
 
-        def test_obtener_posicion(self):
+    def test_obtener_posicion(self):
         self.assertEqual(self.board.obtener_posicion(0), 2)
-    
+
         with self.assertRaises(IndexError):
             self.board.obtener_posicion(24)
 

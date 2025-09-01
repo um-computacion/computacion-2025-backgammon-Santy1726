@@ -3,7 +3,6 @@ class Board:
         self.__board__ = self.create_board() 
         
     def create_board(self):
-        
         board = [0] * 24
         board[0] = 2
         board[5] = -5
@@ -19,14 +18,13 @@ class Board:
         return self.__board__  
          
     def establecer_posicion(self, indice, valor):
-    
         if 0 <= indice < 24:
             self.__board__[indice] = valor
         else:
             raise IndexError("La posición debe estar entre 0 y 23")
 
     def obtener_posicion(self, indice):
-         if 0 <= indice < 24:
+        if 0 <= indice < 24:
             return self.__board__[indice]
         else:
             raise IndexError("La posición debe estar entre 0 y 23")
@@ -41,8 +39,4 @@ class Board:
         jugador = 1 if self.__board__[origen] > 0 else -1
 
         self.__board__[origen] -= jugador
-        
         self.__board__[destino] += jugador
-
-
-

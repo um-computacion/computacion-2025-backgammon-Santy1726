@@ -15,3 +15,23 @@ class TestTablero(unittest.TestCase):
         self.assertEqual(self.board.obtener_posicion(0), 3)
         self.board.establecer_posicion(5, -2)
         self.assertEqual(self.board.obtener_posicion(5), -2)
+
+        def test_obtener_posicion(self):
+        self.assertEqual(self.board.obtener_posicion(0), 2)
+    
+        with self.assertRaises(IndexError):
+            self.board.obtener_posicion(24)
+
+    def test_mover_ficha(self):
+        self.board.mover_ficha(0, 1)
+        self.assertEqual(self.board.obtener_posicion(0), 1)
+        self.assertEqual(self.board.obtener_posicion(1), 1)
+
+        with self.assertRaises(IndexError):
+            self.board.mover_ficha(0, 24)
+
+        with self.assertRaises(ValueError):
+            self.board.mover_ficha(2, 3)
+
+if __name__ == '__main__':
+    unittest.main()

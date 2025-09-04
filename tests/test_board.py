@@ -1,7 +1,7 @@
 import unittest
 from Core.board import Board
 
-class TestTablero(unittest.TestCase):
+class TestBoard(unittest.TestCase):
 
     def setUp(self):
         self.board = Board()

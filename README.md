@@ -1,2 +1,3 @@
-Nombre: Santiago Ortega
-Carrera: informatica 
+# Nombre: Santiago Ortega
+
+# Carrera: informatica 

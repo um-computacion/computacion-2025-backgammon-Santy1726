@@ -6,7 +6,6 @@ class Board:
         self.__inicializar_tablero__()
 
     def __inicializar_tablero__(self):
-        """Inicializa el tablero con fichas predefinidas."""
         self.__board__[0] = [Checker("blanco", 0) for _ in range(2)]
         self.__board__[5] = [Checker("negro", 5) for _ in range(5)]
         self.__board__[7] = [Checker("negro", 7) for _ in range(3)]

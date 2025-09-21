@@ -7,7 +7,19 @@ class Player:
         self.__turno__ = False
         self.__movimientos__ = []
 
-    def obtener_movimientos(self):
+    def obtener_nombre(self) -> str:
+        return self.__nombre__  
+    
+    def obtener_piezas(self) -> int:
+        return self.__piezas__  
+    
+    def  obtener_color(self) -> str:
+        return self.__color__
+    
+    def obtener_turno(self) -> bool:
+        return self.__turno__
+    
+    def obtener_movimientos(self) -> list[tuple[int, int]]:
         return self.__movimientos__
 
     def obtener_capturadas(self) -> int:

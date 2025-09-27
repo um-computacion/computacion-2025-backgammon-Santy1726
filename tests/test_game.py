@@ -39,6 +39,50 @@ class TestGame(unittest.TestCase):
         self.assertTrue(self.j2.__turno__)
         self.assertFalse(self.j1.__turno__)
 
+    def test_mover_ficha_valido(self):
+        self.game.__board__.__board__[0] = [Checker("blanco", 0)]
+        self.game.__board__.mover_ficha(0, 3)
+
+        self.assertEqual(len(self.game.__board__.__board__[0]), 0)
+        self.assertEqual(len(self.game.__board__.__board__[3]), 1)
+        self.assertEqual(self.game.__board__.__board__[3][0].obtener_posicion(), 3)
+
+    def test_mover_ficha_fuera_de_rango(self):
+        with self.assertRaises(IndexError):
+            self.game.__board__.mover_ficha(-1, 30)
+
+    def test_mover_ficha_sin_fichas(self):
+        with self.assertRaises(ValueError):
+            self.game.__board__.mover_ficha(2, 3)
+
+    def test_str_de_jugador(self):
+        texto = str(self.j1)
+        self.assertIn("Jugador: Alice", texto)
+        self.assertIn("Color: blanco", texto)
+
+    def test_captura_y_devolucion_de_pieza(self):
+        piezas_iniciales = self.j1.__piezas__
+        self.j1.perder_pieza()
+        self.assertEqual(self.j1.__piezas__, piezas_iniciales - 1)
+
+        self.j1.devolver_pieza()
+        self.assertEqual(self.j1.__piezas__, piezas_iniciales)
+
+    def test_registrar_movimiento(self):
+        self.j1.agregar_movimiento(5, 10)
+        self.assertIn((5, 10), self.j1.__movimientos__)
+
+    def test_dado(self):
+        dado = self.game.__dice__
+        valor = dado.tirar()
+        self.assertTrue(1 <= valor <= 6)
+
+        valores = dado.tirar_varias(5)
+        self.assertEqual(len(valores), 5)
+        for v in valores:
+            self.assertTrue(1 <= v <= 6)
+
+
 
 if __name__ == "__main__":
     unittest.main()

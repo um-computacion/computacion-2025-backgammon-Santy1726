@@ -1,6 +1,6 @@
-from dice import Dice
-from board import Board
-from player import Player
+from Core.dice import Dice
+from Core.board import Board
+from Core.player import Player
 
 class Game:
     def __init__(self, jugador1: Player, jugador2: Player, lados_dado: int = 6):
@@ -26,13 +26,17 @@ class Game:
 
         while True:
             try:
-                origen = int(input("Elige posición de origen (0-23): "))
+                raw = input("Elige posición de origen (0-23) o 'q' para salir: ")
+                if raw.strip().lower() == 'q':
+                    raise KeyboardInterrupt
+                origen = int(raw)
                 destino = origen + tirada if jugador.obtener_color() == "blanco" else origen - tirada
-
-                print(f"Intentando mover {origen} -> {destino}")
                 self.__board__.mover_ficha(origen, destino)
                 jugador.agregar_movimiento(origen, destino)
                 break
+            except KeyboardInterrupt:
+                print("Saliendo del juego.")
+                return "quit"
             except Exception as e:
                 print(f"❌ Error: {e}. Intenta de nuevo.")
 
@@ -46,6 +50,11 @@ class Game:
 
     def jugar(self):
         print("¡Bienvenido al juego!")
-        while True:
-            self.__mostrar_estado__()
-            self.__turno__()
+        try:
+            while True:
+                self.__mostrar_estado__()
+                res = self.__turno__()
+                if res == "quit":
+                    break
+        except KeyboardInterrupt:
+            print("Juego terminado por interrupción.")

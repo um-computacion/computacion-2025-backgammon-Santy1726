@@ -7,7 +7,6 @@ class Player:
         self.__turno__ = False
         self.__movimientos__ = []
 
-    # ==== GETTERS ====
     def obtener_nombre(self) -> str:
         return self.__nombre__
 
@@ -26,7 +25,6 @@ class Player:
     def obtener_capturadas(self) -> int:
         return self.__capturadas__
 
-    # ==== ACCIONES ====
     def asignar_turno(self, turno: bool):
         self.__turno__ = turno
 
@@ -45,7 +43,9 @@ class Player:
     def devolver_pieza(self):
         self.__piezas__ += 1
 
-    # ==== REPRESENTACIÓN ====
+    def tiene_turno(self) -> bool:
+        return self.__turno__
+
     def __str__(self):
         return (f"Jugador: {self.__nombre__} | Color: {self.__color__} | "
                 f"Piezas: {self.__piezas__} | Capturadas: {self.__capturadas__} | "

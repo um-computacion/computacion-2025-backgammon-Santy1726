@@ -50,3 +50,4 @@ class Player:
         return (f"Jugador: {self.__nombre__} | Color: {self.__color__} | "
                 f"Piezas: {self.__piezas__} | Capturadas: {self.__capturadas__} | "
                 f"Turno: {'Sí' if self.__turno__ else 'No'}")
+

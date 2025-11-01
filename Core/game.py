@@ -17,7 +17,6 @@ class Game:
         self.__jugadores__ = [jugador1, jugador2]
         self.__jugadores__[0].asignar_turno(True)
         self.__jugadores__[1].asignar_turno(False)
-        # Estado temporal de la tirada para modo gráfico
         self.__ultima_tirada__ = None
 
     def __obtener_jugador_actual__(self) -> Player:
@@ -62,8 +61,6 @@ class Game:
     # ---------------------------
     def __home_range__(self, color: str) -> range:
         """Devuelve el rango de indices que conforman la 'home' del color."""
-        # Asumimos: blanco mueve hacia índices mayores (0→23), home = 18..23
-        #           negro mueve hacia índices menores (23→0), home = 0..5
         return range(18, 24) if color == "blanco" else range(0, 6)
 
     def __todas_en_home__(self, color: str) -> bool:
@@ -342,7 +339,7 @@ class Game:
                             mensaje = f"No se pudo reingresar: {e}"
                         continue
 
-                    # Selección origen/destino
+                   
                     if seleccion_origen is None:
                         # seleccionar origen
                         # validar que en idx haya una ficha del jugador
@@ -356,7 +353,7 @@ class Game:
                         seleccion_origen = idx
                         mensaje = f"Origen seleccionado: {idx}. Ahora elegí destino (clic)."
                     else:
-                        # seleccionar destino
+                    
                         if tirada_actual is None:
                             mensaje = "Primero tirá el dado (SPACE) para mover."
                             seleccion_origen = None
@@ -366,7 +363,7 @@ class Game:
                         destino = seleccion_origen + tirada_actual if jugador.obtener_color() == "blanco" else seleccion_origen - tirada_actual
 
                         try:
-                            # Bearing off en modo gráfico
+                          
                             if not (0 <= destino < 24):
                                 if self.__puede_bear_off__(origen, tirada_actual, jugador.obtener_color()):
                                     self.__hacer_bear_off__(origen, jugador)
@@ -383,7 +380,7 @@ class Game:
                                     mensaje = f"{jugador.obtener_nombre()} capturó una ficha!"
                                 else:
                                     mensaje = f"Moviste {origen} → {destino}."
-                            # verificar victoria
+                            
                             if self.__board__.juego_terminado(jugador.obtener_color()):
                                 mensaje = f"¡{jugador.obtener_nombre()} ganó!"
                                 running = False

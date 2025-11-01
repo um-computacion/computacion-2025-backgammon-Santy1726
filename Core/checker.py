@@ -1,30 +1,33 @@
 class Checker:
-    def __init__(self, color: str, posicion):
+    def _init_(self, color: str, posicion):
         if color not in ("blanco", "negro"):
             raise ValueError("color debe ser 'blanco' o 'negro'")
         if not (isinstance(posicion, int) and 0 <= posicion < 24) and posicion not in ("off", "bar"):
             raise TypeError("posicion debe ser int 0-23 o 'off'/'bar'")
-        self.__color__ = color
-        self.__posicion__ = posicion
+        self._color_ = color
+        self._posicion_ = posicion
 
     def mover(self, nueva_posicion):
         if not (isinstance(nueva_posicion, int) and 0 <= nueva_posicion < 24) and nueva_posicion not in ("off", "bar"):
             raise TypeError("nueva_posicion debe ser int 0-23 o 'off'/'bar'")
-        self.__posicion__ = nueva_posicion
+        self._posicion_ = nueva_posicion
 
     def esta_fuera(self) -> bool:
-        return self.__posicion__ == "off"
+        return self._posicion_ == "off"
 
     def obtener_color(self) -> str:
-        return self.__color__
+        return self._color_
 
     def obtener_posicion(self):
-        return self.__posicion__
+        return self._posicion_
 
-    def __int__(self):
-        if isinstance(self.__posicion__, int):
-            return self.__posicion__
+    def _int_(self):
+        if isinstance(self._posicion_, int):
+            return self._posicion_
         raise TypeError("No se puede convertir a int: la ficha está fuera")
 
-    def __str__(self):
-        return f"Ficha {self.__color__} en {self.__posicion__}"
+    def _str_(self):
+        return f"Ficha {self._color} en {self.posicion_}"
+
+    def _repr_(self):
+        return self._str_()
